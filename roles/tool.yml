@@ -1,0 +1,5 @@
+- name: play Install {{ toolname }}
+  hosts: "{{ toolname }}"
+  become: yes
+  roles:
+    - "{{ toolname }}"
