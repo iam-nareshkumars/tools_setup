@@ -1,21 +1,21 @@
 module "tools" {
-  for_each = var.tools
-  source = "./modules"
-  ami = data.aws_ami.main.id
+  for_each      = var.tools
+  source        = "./modules"
+  ami           = data.aws_ami.main.id
   instance_type = each.value["instance_type"]
-  Name = each.value["Name"]
-  zone_id = data.aws_route53_zone.main.zone_id
-  domain = var.domain
+  Name          = each.value["Name"]
+  zone_id       = data.aws_route53_zone.main.zone_id
+  domain        = var.domain
 }
 
 resource "null_resource" "main" {
   provisioner "local-exec" {
-   command = <<EOT
+    command = <<EOT
       sleep 10; 
       cd /home/ec2-user/tools_setup; 
       ansible-playbook -i ${toolname}.clouding-app.shop, -e ansible_username=ec2-user -e ansible_password=DevOps321 -e toolname=${each.value["Name"]} roles\tool.yml
     EOT
-  
+
   }
 
 }
