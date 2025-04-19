@@ -21,7 +21,7 @@ resource "aws_security_group" "main" {
   description = "terraform tools automations"                         
   
  tags = {
-     Name = "${var.Name}-${var.env}-SG"
+     Name = "${var.Name}-tool-SG"
  }
 
     ingress {
