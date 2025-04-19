@@ -13,7 +13,6 @@ resource "null_resource" "main" {
   provisioner "local-exec" {
     command = <<EOT
       sleep 10; 
-      cd /home/ec2-user/tools_setup; 
       ansible-playbook -i inv -e ansible_username=ec2-user -e ansible_password=DevOps321 -e toolname=${each.value["Name"]} tool.yml
     EOT
 
