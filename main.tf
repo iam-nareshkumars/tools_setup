@@ -9,6 +9,7 @@ module "tools" {
 }
 
 resource "null_resource" "main" {
+  for_each = var.tools
   provisioner "local-exec" {
     command = <<EOT
       sleep 10; 
