@@ -34,8 +34,8 @@ resource "aws_security_group" "main" {
   }
   ingress {
     description = "custome SG for tools"
-    from_port   = 0
-    to_port     = 65535
+    from_port   = var.port_no
+    to_port     = var.port_no
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

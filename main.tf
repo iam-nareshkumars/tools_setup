@@ -6,6 +6,7 @@ module "tools" {
   Name          = each.value["Name"]
   zone_id       = data.aws_route53_zone.main.zone_id
   domain        = var.domain
+  port_no       = each.value["port_no"]
 }
 
 resource "null_resource" "main" {
