@@ -4,7 +4,7 @@ data "aws_ami" "main" {
   owners      = ["703671922956"]
 
   filter {
-    name   = "Name"
+    name   = "Description"
     values = ["MyPracticeImage"]
   }
 
