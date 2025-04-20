@@ -1,10 +1,10 @@
 data "aws_ami" "main" {
 
   most_recent = true
-  owners      = ["355449129696"]
+  owners      = ["703671922956"]
 
   filter {
-    name   = "tag:Name"
+    name   = "Name"
     values = ["MyPracticeImage"]
   }
 
