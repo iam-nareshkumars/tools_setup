@@ -1,7 +1,7 @@
 pipeline {
  agent any 
  options {
-        ansiColor('xterm')
+        
         disableConcurrentBuilds()
         buildDiscarder(logRotator(numToKeepStr: "3"))
 }
