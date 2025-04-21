@@ -68,13 +68,6 @@ resource "null_resource" "main" {
   }
   depends_on = [aws_route53_record.main]
   
-  connection {
-    type     = "ssh"
-    user     = var.user
-    password = var.password
-    host     = aws_instance.main.private_ip
-    }
-
 
   provisioner "remote-exec" {
     inline = [
