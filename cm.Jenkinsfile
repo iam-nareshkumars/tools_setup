@@ -8,7 +8,7 @@ pipeline {
 
  parameters {
        
-         choice(name: 'TOOLS', choices: ['vault'], description: 'select tool name to provision')
+         choice(name: 'TOOLNAME', choices: ['vault'], description: 'select tool name to provision')
          
         
 
@@ -17,7 +17,7 @@ pipeline {
     stage ('running ansible playbbok'){
           steps {
              
-             sh "bash setup.sh ${params.TOOLS}"
+             sh "bash setup.sh ${params.TOOLNAME}"
 }
             }
    
