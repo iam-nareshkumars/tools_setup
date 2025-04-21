@@ -1,11 +1,13 @@
 resource "aws_instance" "main" {
 
-  # instance_market_options {
-  #   market_type = "spot"
-  #   spot_options {
-  #     max_price = 0.0031
-  #   }
-  # }
+  instance_market_options {
+    market_type = "spot"
+    spot_options {
+
+      instance_interruption_behavior = stop
+
+    }
+  }
 
   ami                    = data.aws_ami.main.id
   instance_type          = var.instance_type
