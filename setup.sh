@@ -1,1 +1,1 @@
-ansible-playbook -i "${var.tools["Name"]}.${var.domain}" -e toolname=$1 tools.yml 
+ansible-playbook -i "${var.tools["Name"]}.${var.domain}", -e toolname=$1 tools.yml 
