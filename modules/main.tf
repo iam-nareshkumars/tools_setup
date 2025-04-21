@@ -67,7 +67,7 @@ resource "null_resource" "main" {
     timestamp = timestamp()
   }
   depends_on = [aws_route53_record.main]
-  for_each   = var.tools
+
   provisioner "local-exec" {
     command = <<EOT
       sleep 10; 
