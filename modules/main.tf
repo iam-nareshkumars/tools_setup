@@ -79,7 +79,7 @@ resource "null_resource" "main" {
   provisioner "remote-exec" {
     inline = [
       "sleep 10",
-     "ansible-pull -U https://github.com/ORG-NARESH/tools_setup.git -e toolname=${var.Name} tools.yml"
+     "ansible-playbook -i ${var.Name}.eternallearnings.shop  -e toolname=${var.Name} tools.yml"
     
     ]
   }
@@ -87,6 +87,4 @@ resource "null_resource" "main" {
 }
 
 
-    
-  
   
