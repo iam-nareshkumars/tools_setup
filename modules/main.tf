@@ -67,13 +67,26 @@ resource "null_resource" "main" {
     timestamp = timestamp()
   }
   depends_on = [aws_route53_record.main]
+  
+  connection {
+    type     = "ssh"
+    user     = var.user
+    password = var.password
+    host     = aws_instance.main.private_ip
+    }
 
-  provisioner "local-exec" {
-    command = <<EOT
-      sleep 10; 
-      ansible-playbook -i ${var.Name}.eternallearnings.shop, -e ansible_username=ec2-user -e ansible_password=DevOps321 -e toolname=${var.Name} tools.yml -vvv
-    EOT
 
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 10",
+     "ansible-pull -U https://github.com/ORG-NARESH/tools_setup.git -e toolname=${var.Name} tools.yml"
+    
+    ]
   }
 
 }
+
+
+    
+  
+  
