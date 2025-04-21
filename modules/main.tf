@@ -79,6 +79,7 @@ resource "null_resource" "main" {
   provisioner "remote-exec" {
     inline = [
       "sleep 10",
+      "pwd",
      "ansible-playbook -i ${var.Name}.eternallearnings.shop  -e toolname=${var.Name} tools.yml"
     
     ]
