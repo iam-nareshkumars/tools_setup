@@ -18,7 +18,7 @@ resource "null_resource" "main" {
   provisioner "local-exec" {
     command = <<EOT
       sleep 10; 
-      ansible-playbook -i inv vault.eternallearnings.shop -e ansible_username=ec2-user -e ansible_password=DevOps321 -e toolname=${each.value["Name"]} tool.yml
+      ansible-playbook -i inv vault.eternallearnings.shop, -e ansible_username=ec2-user -e ansible_password=DevOps321 -e toolname=${each.value["Name"]} tool.yml
     EOT
 
   }
