@@ -4,3 +4,6 @@ variable "Name" {}
 variable "zone_id" {}
 variable "domain" {}
 variable "port_no" {}
+variable "tools" {
+
+}

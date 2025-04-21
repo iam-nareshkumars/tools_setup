@@ -52,6 +52,7 @@ resource "aws_security_group" "main" {
 }
 
 resource "aws_route53_record" "main" {
+  depends_on = [aws_instance.main]
 
   zone_id = data.aws_route53_zone.main.id
   name    = "${var.Name}.${var.domain}"
@@ -60,3 +61,20 @@ resource "aws_route53_record" "main" {
   records = [aws_instance.main.private_ip]
 }
 
+resource "null_resource" "main" {
+
+  triggers = {
+    timestamp = timestamp()
+  }
+  depends_on = [aws_route53_record.main]
+  for_each   = var.tools
+  provisioner "local-exec" {
+    command = <<EOT
+      sleep 10; 
+      cd  /var/lib/jenkins/workspace/tools_automation
+      ansible-playbook -i inv vault.eternallearnings.shop, -e ansible_username=ec2-user -e ansible_password=DevOps321 -e toolname=${each.value["Name"]} tool.yml
+    EOT
+
+  }
+
+}
