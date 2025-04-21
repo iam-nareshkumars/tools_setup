@@ -16,7 +16,7 @@ pipeline {
  stages {
     stage ('initiating terraform'){
           steps {
-             sh "terraform init -migrate-state"
+             sh "terraform init"
 
                 }
             }
