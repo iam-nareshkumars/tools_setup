@@ -10,6 +10,9 @@ module "tools" {
 }
 
 resource "null_resource" "main" {
+  triggers = {
+    timestamp = timestamp()
+  }
   depends_on = [module.tools]
   for_each   = var.tools
   provisioner "local-exec" {
