@@ -80,7 +80,7 @@ resource "null_resource" "main" {
     inline = [
       "sleep 10",
       "pwd",
-      "ansible-playbook -i ${var.Name}.eternallearnings.shop  -e toolname=${var.Name} /home/ec2-user/tools_setup/tools.yml"
+      "Running playbook"
        #"ansible-playbook -i vault.eternallearnings.shop  -e toolname=vault /home/ec2-user/tools_setup/tools.yml"
     ]
   }
