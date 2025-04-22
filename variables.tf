@@ -1,6 +1,7 @@
 variable "domain" {
   default = "eternallearnings.shop"
 }
+
 variable "tools" {
   default = {
     vault = {
