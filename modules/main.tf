@@ -19,7 +19,7 @@ resource "aws_instance" "main" {
 }
 
 resource "aws_security_group" "main" {
-  depends_on  = [aws_instance.main]
+
   name        = "${var.Name}-tool-SG"
   description = "terraform tools automations"
 
@@ -53,7 +53,7 @@ resource "aws_security_group" "main" {
 }
 
 resource "aws_route53_record" "main" {
-  depends_on = [aws_security_group.main.id]
+
 
   zone_id = data.aws_route53_zone.main.id
   name    = "${var.Name}.${var.domain}"
@@ -63,6 +63,7 @@ resource "aws_route53_record" "main" {
 }
 
 resource "null_resource" "main" {
+
 
   triggers = {
     timestamp = timestamp()
