@@ -29,10 +29,17 @@ pipeline {
     //         }
     //     }
 
-    stage('Terraform apply/destroy') {
+    stage('Terraform plan') {
     
         steps {
             sh "terraform plan"
+            
+              }
+            }
+    stage('Terraform apply') {
+    
+        steps {
+            sh "terraform ${params.ACTION} -auto-approve"
             
               }
             }
