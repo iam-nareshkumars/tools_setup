@@ -8,7 +8,7 @@ pipeline {
 
  parameters {
        
-         choice(name: 'TOOLS', choices: ['vault'], description: 'select tool name to provision')
+         choice(name: 'TOOLS', choices: ['vault','prometheus','jenkins'], description: 'select tool name to provision')
          choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'select terraform options')
         
 
