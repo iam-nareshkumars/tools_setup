@@ -5,10 +5,10 @@ variable "zone_id" {}
 variable "domain" {}
 variable "port_no" {}
 variable "user" {
-    default = "ec2-user"
+  default = "ec2-user"
 }
-variable "password" {  
-    default = "DevOps321"
+variable "password" {
+  default = "DevOps321"
 }
 
 

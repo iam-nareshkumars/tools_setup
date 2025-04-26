@@ -9,7 +9,12 @@ variable "tools" {
       instance_type = "t3.small"
       port_no       = "8200"
     }
-   
+    prometheus = {
+      Name          = "prometheus"
+      instance_type = "t3.small"
+      port_no       = "9090"
+    }
+
   }
 
 }
