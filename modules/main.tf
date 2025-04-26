@@ -19,7 +19,7 @@ resource "aws_instance" "main" {
 }
 
 resource "aws_security_group" "main" {
-  depends_on  = [aws_instance.main]
+  depends_on  = [aws_instance.main.id]
   name        = "${var.Name}-tool-SG"
   description = "terraform tools automations"
 
@@ -53,7 +53,7 @@ resource "aws_security_group" "main" {
 }
 
 resource "aws_route53_record" "main" {
-  depends_on = [aws_security_group.main]
+  depends_on = [aws_security_group.main.id]
 
   zone_id = data.aws_route53_zone.main.id
   name    = "${var.Name}.${var.domain}"
