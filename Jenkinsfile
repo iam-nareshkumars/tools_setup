@@ -32,8 +32,8 @@ pipeline {
     stage('Terraform apply/destroy') {
     
         steps {
-            sh "terraform plan"
-            sh "terraform ${params.ACTION}  -auto-approve"
+            sh "terraform plan  -target=module.tools[${params.TOOLS}]"
+            
               }
             }
 
