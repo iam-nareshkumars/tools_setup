@@ -15,7 +15,7 @@ variable "tools" {
       port_no       = "9090"
     }
     jenkins = {
-      Name          = "prometheus"
+      Name          = "jenkins"
       instance_type = "t3.medium"
       port_no       = "0"
     }
