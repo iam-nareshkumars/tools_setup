@@ -19,6 +19,7 @@ resource "aws_instance" "main" {
 }
 
 resource "aws_security_group" "main" {
+  depends_on  = [aws_instance.main]
   name        = "${var.Name}-tool-SG"
   description = "terraform tools automations"
 
@@ -52,7 +53,7 @@ resource "aws_security_group" "main" {
 }
 
 resource "aws_route53_record" "main" {
-  depends_on = [aws_instance.main]
+  depends_on = [aws_security_group.main]
 
   zone_id = data.aws_route53_zone.main.id
   name    = "${var.Name}.${var.domain}"
@@ -76,6 +77,7 @@ resource "null_resource" "main" {
   }
 
   provisioner "remote-exec" {
+
     inline = [
       "sleep 10",
       "pwd",
