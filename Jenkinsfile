@@ -32,7 +32,7 @@ pipeline {
     stage('Terraform apply/destroy') {
     
         steps {
-            sh "terraform plan  -target=${params.TOOLS}]"
+            sh "terraform plan  -target=${params.TOOLS}"
             
               }
             }
