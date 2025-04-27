@@ -42,6 +42,12 @@ pipeline {
             sh "terraform ${params.ACTION} -taget=module.${params.TOOLNAME}  -auto-approve"
             
               }
+    }
+         stage('Terraform apply') {   
+        steps {
+            sh "terraform ${params.ACTION} -taget=module.${params.TOOLNAME}  -auto-approve"
+            
+              }
             }
 
         }
