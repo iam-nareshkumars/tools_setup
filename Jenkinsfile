@@ -18,8 +18,8 @@ pipeline {
           steps {
               sh "terraform --version"
              sh "rm -rf .terraform*"
-             sh "rm -rf  terraform. tfstate"
-             sh "terraform init -reconfigure"
+             
+             sh "terraform init"
 }
             }
    
@@ -40,14 +40,14 @@ pipeline {
     stage('Terraform apply') {
     
         steps {
-            sh "terraform ${params.ACTION} -target=module.vault -auto-approve"
+            sh "terraform ${params.ACTION}  -auto-approve"
             
               
               }
     }
          stage('Terraform destroy') {   
         steps {
-            sh "terraform ${params.ACTION} -target=module.tools[${params.TOOLNAME}]  -auto-approve"
+            sh "terraform ${params.ACTION} -auto-approve"
             
               }
             }
