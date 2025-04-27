@@ -43,7 +43,7 @@ pipeline {
             
               }
     }
-         stage('Terraform apply') {   
+         stage('Terraform destroy') {   
         steps {
             sh "terraform ${params.ACTION} -taget=module.${params.TOOLNAME}  -auto-approve"
             
