@@ -53,7 +53,6 @@ resource "aws_security_group" "main" {
 }
 
 resource "aws_route53_record" "main" {
-  depends_on = [aws_security_group.main]
 
 
   zone_id = data.aws_route53_zone.main.id
