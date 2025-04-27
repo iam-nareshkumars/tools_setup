@@ -33,21 +33,21 @@ pipeline {
     stage('Terraform plan') {
     
         steps {
-            sh "terraform plan -target=module.vault"
+            sh "terraform plan -target=${params.TOOLNAME}"
             
               }
             }
     stage('Terraform apply') {
     
         steps {
-            sh "terraform ${params.ACTION} -target=module.vault  -auto-approve"
+            sh "terraform ${params.ACTION} -target=module.${params.TOOLNAME}  -auto-approve" 
             
               
               }
     }
          stage('Terraform destroy') {   
         steps {
-            sh "terraform ${params.ACTION} -target=module.vault  -auto-approve"
+            sh "terraform ${params.ACTION} -target=module.${params.TOOLNAME} -auto-approve"
             
               }
             }
