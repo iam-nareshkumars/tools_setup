@@ -19,7 +19,6 @@ resource "aws_instance" "main" {
 }
 
 resource "aws_security_group" "main" {
-  depends_on = [aws_instance.main]
 
   name        = "${var.Name}-tool-SG"
   description = "terraform tools automations"
