@@ -19,7 +19,7 @@ pipeline {
               sh "terraform --version"
              sh "rm -rf .terraform*"
              
-             sh "terraform init"
+             sh "terraform init -backend-config=expense-tools/terraform.tfstate"
 }
             }
    
