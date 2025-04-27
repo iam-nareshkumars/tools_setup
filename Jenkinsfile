@@ -33,7 +33,7 @@ pipeline {
     stage('Terraform plan') {
     
         steps {
-            sh "terraform plan"
+            sh "terraform plan -target=module.vault"
             
               }
             }
