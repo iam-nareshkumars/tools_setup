@@ -40,14 +40,14 @@ pipeline {
     stage('Terraform apply') {
     
         steps {
-            sh "terraform ${params.ACTION}  -auto-approve"
+            sh "terraform ${params.ACTION} -target=module.tools[""${params.TOOLNAME}""]  -auto-approve"
             
               
               }
     }
          stage('Terraform destroy') {   
         steps {
-            sh "terraform ${params.ACTION} -auto-approve"
+            sh "terraform ${params.ACTION} -target=module.tools[""${params.TOOLNAME}""]  -auto-approve"
             
               }
             }
