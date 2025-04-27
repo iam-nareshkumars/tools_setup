@@ -17,7 +17,7 @@ variable "tools" {
     jenkins = {
       Name          = "jenkins"
       instance_type = "t3.medium"
-      port_no       = "0"
+      port_no       = "8080"
     }
 
   }
