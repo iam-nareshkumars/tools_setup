@@ -8,7 +8,7 @@ pipeline {
 
  parameters {
        
-         
+         choice(name: 'TOOLNAME', choices: ['vault','prometheus','jenkins'], description: 'select tool name to provision')
          choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'select terraform options')
         
 
@@ -39,7 +39,7 @@ pipeline {
     stage('Terraform apply') {
     
         steps {
-            sh "terraform ${params.ACTION} -auto-approve"
+            sh "terraform ${params.ACTION} -taget=module.${params.TOOLNAME}  -auto-approve"
             
               }
             }
