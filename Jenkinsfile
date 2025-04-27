@@ -18,6 +18,7 @@ pipeline {
           steps {
               sh "terraform --version"
              sh "rm -rf .terraform*"
+             sh "rm -rf  terraform. tfstate"
              sh "terraform init -reconfigure"
 }
             }
