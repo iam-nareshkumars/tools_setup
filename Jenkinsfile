@@ -40,7 +40,7 @@ pipeline {
     stage('Terraform apply') {
     
         steps {
-            sh "terraform ${params.ACTION} -target=module.tools[""${params.TOOLNAME}""]  -auto-approve"
+            sh "terraform ${params.ACTION} -target=module.vault  -auto-approve"
             
               
               }
