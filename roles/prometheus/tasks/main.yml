@@ -1,42 +1,33 @@
 - name: Set hostname for Jenkins
   ansible.builtin.shell: set-hostname {{ toolname }}
 
-- name: Install Java 17 (required for Jenkins)
-  ansible.builtin.shell: dnf install -y java-17-openjdk
+- name: Create prometheus user
+  ansible.builtin.user:
+    name: prometheus
 
-- name: Install EPEL release
-  ansible.builtin.shell: dnf install -y epel-release
+- name: Download & extract prometheus
+  ansible.builtin.unarchive:
+    src: "{{ url }}"
+    dest: /opt
+    remote_src: yes
+    owner: prometheus
+    group: prometheus
 
-- name: Add Jenkins repository
-  ansible.builtin.shell: |
-    echo "=== Adding Jenkins repository ==="
-    sudo tee /etc/yum.repos.d/jenkins.repo > /dev/null <<EOF
-    [jenkins]
-    name=Jenkins-stable
-    baseurl=https://pkg.jenkins.io/redhat-stable
-    gpgcheck=1
-    gpgkey=https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-    EOF
+- name: Copying Prometheus Config
+  ansible.builtin.template:
+    src: prometheus.yml
+    dest: /opt/prometheus-3.2.1.linux-amd64/prometheus.yml
+    owner: prometheus
+    group: prometheus
+    
+- name: Copying systemd file 
+  ansible.builtin.template:
+    src: prometheus.service
+    dest: /etc/systemd/system/prometheus.service
 
-- name: Import Jenkins GPG key
-  ansible.builtin.shell: |
-    echo "=== Importing Jenkins GPG key ==="
-    sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-
-- name: Install Jenkins
-  ansible.builtin.shell: |
-    echo "=== Installing Jenkins ==="
-    sudo dnf install -y {{ toolname }}
-
-- name: Enable and start Jenkins service
-  ansible.builtin.service:
-    name: "{{ toolname }}"
-    enabled: yes
-    state: started
-
-- name: Check Jenkins service status
-  ansible.builtin.shell: |
-    echo "=== Jenkins service status ==="
-    sudo systemctl status jenkins --no-pager || true
-
-
+- name: Restarting service
+  ansible.builtin.systemd_service:
+    name: prometheus
+    state: restarted
+    enabled: true
+    daemon_reload: true
