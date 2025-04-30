@@ -1,11 +1,11 @@
 [Unit]
-Description = Prometheus Service
+Description = Grafana Service
 
 [Service]
-User=prometheus
+User=grafana
 WorkingDirectory=/opt/prometheus-3.2.1.linux-amd64
 ExecStart=/opt/prometheus-3.2.1.linux-amd64/prometheus
-SyslogIdentifier=prometheus
+SyslogIdentifier=grafana
 
 [Install]
 WantedBy=multi-user.target

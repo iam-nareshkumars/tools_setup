@@ -1,33 +1,23 @@
-- name: Set hostname for Jenkins
-  ansible.builtin.shell: set-hostname {{ toolname }}
+- name: Configuring hostname
+  ansible.builtin.shell: set-hostname grafana
 
-- name: Create {{ toolname }} user
+- name: Create grafana user
   ansible.builtin.user:
-    name: "{{ toolname }}"
+    name: grafana
 
-- name: Download & extract "{{ toolname }}"
-  ansible.builtin.unarchive:
-    src: "{{ url }}"
-    dest: /opt
-    remote_src: yes
-    owner: "{{ toolname }}"
-    group: "{{ toolname }}"
+- name: Copying repo
+  ansible.builtin.template:
+    src: grafana.repo
+    dest: /etc/yum.repos.d/grafana.repo
 
-- name: Copying Prometheus Config
-  ansible.builtin.template:
-    src: prometheus.yml
-    dest: /opt/prometheus-3.2.1.linux-amd64/prometheus.yml
-    owner: "{{ toolname }}"
-    group: "{{ toolname }}"
-    
-- name: Copying systemd file 
-  ansible.builtin.template:
-    src: prometheus.service
-    dest: /etc/systemd/system/prometheus.service
+- name: Installinging Grafana
+  ansible.builtin.dnf:
+    name: grafana
+    state: installed
 
 - name: Restarting service
   ansible.builtin.systemd_service:
-    name: "{{ toolname }}"
+    name: grafana-server
     state: restarted
     enabled: true
     daemon_reload: true
