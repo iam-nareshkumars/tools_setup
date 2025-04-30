@@ -12,7 +12,7 @@ resource "aws_instance" "main" {
   ami                    = data.aws_ami.main.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.main.id]
-  iam_instance_profile   = aws_iam_role.main.arn
+  iam_instance_profile   = aws_iam_instance_profile.main.arn
 
   tags = {
     Name = "${var.Name}-tool"
