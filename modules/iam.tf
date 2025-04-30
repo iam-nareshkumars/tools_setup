@@ -36,6 +36,7 @@ resource "aws_iam_role_policy" "main" {
         Action = [
           "ec2:DescribeInstances",
           "ec2:DescribeAvailabilityZones"
+
         ]
         Effect   = "Allow"
         Resource = "*"

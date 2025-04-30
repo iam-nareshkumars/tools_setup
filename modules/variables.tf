@@ -10,5 +10,7 @@ variable "user" {
 variable "password" {
   default = "DevOps321"
 }
-
+variable "iam_action" {
+  default = []
+}
 
