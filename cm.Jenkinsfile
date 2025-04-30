@@ -8,7 +8,7 @@ pipeline {
 
  parameters {
        
-         choice(name: 'TOOLNAME', choices: ['vault','prometheus','jenkins'], description: 'select tool name to provision')
+         choice(name: 'TOOLNAME', choices: ['grafana','vault','prometheus','jenkins'], description: 'select tool name to provision')
          
         
 
