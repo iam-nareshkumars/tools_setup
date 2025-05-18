@@ -40,7 +40,7 @@ pipeline {
     stage('Terraform apply') {
     
         steps {
-            sh "terraform ${params.ACTION}  -auto-approve" 
+            sh "terraform plan" 
             
               
               }
