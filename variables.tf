@@ -10,11 +10,11 @@ variable "tools" {
       port_no       = "8200"
     }
 
-    jenkins = {
-      Name          = "jenkins"
-      instance_type = "t3.medium"
-      port_no       = "8080"
-    }
+    # jenkins = {
+    #   Name          = "jenkins"
+    #   instance_type = "t3.medium"
+    #   port_no       = "8080"
+    # }
 
     prometheus = {
       Name          = "prometheus"
