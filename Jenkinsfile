@@ -10,6 +10,7 @@ pipeline {
        
          
          choice(name: 'ACTION', choices: ['apply', 'destroy'], description: 'select terraform options')
+         choice(name: 'TOOL', choices: ['vault', 'tomcat'], description: 'select terraform options')
         
 
         }   
@@ -37,10 +38,10 @@ pipeline {
             
               }
             }
-    stage('Terraform apply') {
+    stage('Terraform apply/destroy') {
     
         steps {
-            sh "terraform  ${params.ACTION} -auto-approve" 
+            sh "terraform  ${params.ACTION} -target=${params.TOOL}  -auto-approve" 
             
               
               }
